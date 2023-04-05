@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300&display=swap');
+
+* {
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
+nav a {
+  position: relative; /* Add this to create a new positioning context */
+}
+
+nav a::before {
+  content: "";
+  position: absolute; /* Add this to position the line */
+  bottom: 0; /* Add this to position the line at the bottom of the link */
+  left: 0;
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: green;
+  transition: width 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transform-origin: center left;
+}
+
+nav a:hover::before {
+  width: 100%;
+  transform: scaleX(1);
+}
+
