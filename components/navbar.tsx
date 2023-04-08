@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
     return (
         <nav className="bg-gray-900">
@@ -6,18 +8,18 @@ export default function Navbar() {
                     <div className="flex items-center">
                         <div className="hidden md:block">
                             <div className="flex items-baseline space-x-4">
-                                <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-md font-medium">หน้าแรก</a>
-                                <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-md font-medium">อุปกรณ์กีฬา</a>
-                                <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-md font-medium">ติดต่อเรา</a>
-                                <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-md font-medium">เกี่ยวกับเรา</a>
+                                <Link href="/" className="text-gray-300 hover:text-green-600 px-3 py-2 rounded-md text-md font-medium">หน้าแรก</Link>
+                                <Link href="/sport" className="text-gray-300 hover:text-green-600 px-3 py-2 rounded-md text-md font-medium">อุปกรณ์กีฬา</Link>
+                                <Link href="/contact" className="text-gray-300 hover:text-green-600 px-3 py-2 rounded-md text-md font-medium">ติดต่อเรา</Link>
+                                <Link href="/aboutus" className="text-gray-300 hover:text-green-600 px-3 py-2 rounded-md text-md font-medium">เกี่ยวกับเรา</Link>
                             </div>
                         </div>
                     </div>
-                    <div className="flex-grow flex justify-center">
+                    <div className="flex-grow flex justify-center mr-72">
                         <span className="text-white text-md font-medium">ยินดีต้อนรับสู่ ศูนย์เช่ายืมอุปกรณ์กีฬา @สนามกีฬาแห่งชาติ</span>
                     </div>
                     <div className="flex items-center">
-                        <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-md font-medium">Login / Sign up</a>
+                        <Link href="/login" className="text-gray-300 hover:text-green-600 px-3 py-2 rounded-md text-md font-medium">Login / Sign up</Link>
                     </div>
                 </div>
             </div>
