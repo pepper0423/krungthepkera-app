@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar";
+import GlobalNavbar from "@/components/globalnavbar";
 import Carousel from "@/components/carousel";
 import Link from "next/link";
 import { useRouter } from 'next/router';
@@ -126,7 +126,7 @@ export default function sport() {
     return (
         <>
             <div>
-                <Navbar />
+                <GlobalNavbar />
             </div>
             <div className="relative">
                 <Carousel>
