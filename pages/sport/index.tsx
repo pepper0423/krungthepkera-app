@@ -1,6 +1,7 @@
 import GlobalNavbar from "@/components/globalnavbar";
 import Carousel from "@/components/carousel";
 import Link from "next/link";
+import Breadcrumb from "@/components/breadcrumbs";
 
 const images = [
     'https://cdn.pixabay.com/photo/2016/07/05/16/53/leaves-1498985__340.jpg',
@@ -76,6 +77,10 @@ const items: Item[] = [
     // add more items here
 ];
 
+const breadcrumbItems = [
+    { label: 'เลือกประเภทกีฬา' },
+];
+
 export default function sport() {
     return (
         <>
@@ -94,8 +99,7 @@ export default function sport() {
                     ))}
                 </Carousel>
             </div>
-            <div className="bg-gray-600 w-full h-12">
-            </div>
+            <Breadcrumb breadcrumb={breadcrumbItems} />
             <div className="bg-blue-200">
                 <div className="container mx-auto py-6">
                     <div className="grid grid-cols-3 gap-4">

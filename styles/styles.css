@@ -4,11 +4,11 @@
   font-family: 'Noto Sans Thai', sans-serif;
 }
 
-nav a {
+#my-link {
   position: relative; /* Add this to create a new positioning context */
 }
 
-nav a::before {
+#my-link::before {
   content: "";
   position: absolute; /* Add this to position the line */
   bottom: 0; /* Add this to position the line at the bottom of the link */
@@ -21,7 +21,7 @@ nav a::before {
   transform-origin: center left;
 }
 
-nav a:hover::before {
+#my-link:hover::before {
   width: 100%;
   transform: scaleX(1);
 }

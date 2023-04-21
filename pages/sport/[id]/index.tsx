@@ -3,6 +3,10 @@ import Carousel from "@/components/carousel";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import Breadcrumb from "@/components/breadcrumbs";
+import { RangeSlider } from "@/components/slider";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const images = [
     'https://cdn.pixabay.com/photo/2016/07/05/16/53/leaves-1498985__340.jpg',
@@ -104,10 +108,16 @@ const items: Item[] = [
     // add more items here
 ];
 
+const breadcrumbItems = [
+    { label: 'เลือกประเภทกีฬา', href: '/sport' },
+    { label: 'เลือกอุปกรณ์กีฬา' },
+];
+
 export default function sport() {
+
     const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
     const [minPrice, setMinPrice] = useState<number>(0);
-    const [maxPrice, setMaxPrice] = useState<number>(5000);
+    const [maxPrice, setMaxPrice] = useState<number>(1000);
 
     const router = useRouter();
     const currentPath = router.asPath;
@@ -140,96 +150,96 @@ export default function sport() {
                     ))}
                 </Carousel>
             </div>
-            <div className="bg-gray-600 w-full h-12">
-            </div>
+            <Breadcrumb breadcrumb={breadcrumbItems} />
             <div className="grid grid-cols-6">
-                <div className="bg-gray-400">
+                <div className="bg-gray-200">
                     <div className="grid grid-rows-3 gap-4 py-8 px-8">
                         <div>
                             <h1 className="text-3xl text-black">ตัวกรอง</h1>
                         </div>
                         <div>
                             <h1 className="text-3xl text-black">ราคา</h1>
-                            <div>
-                                <label>
-                                    <span className="text-black">ราคาต่ำสุด : </span>&nbsp;
-                                    <input
-                                        type="range"
-                                        min="0"
-                                        max="5000"
-                                        step="10"
-                                        value={minPrice}
-                                        onChange={(e) => setMinPrice(Number(e.target.value))}
-                                    />
-                                    {minPrice}
-                                </label><br />
-                                <label>
-                                    <span className="text-black">ราคาสูงสุด : </span>&nbsp;
-                                    <input
-                                        type="range"
-                                        min="0"
-                                        max="5000"
-                                        step="10"
-                                        value={maxPrice}
-                                        onChange={(e) => setMaxPrice(Number(e.target.value))}
-                                    />
-                                    {maxPrice}
-                                </label>
+                            <div className="pt-4">
+                                <RangeSlider
+                                    min={0}
+                                    max={1000}
+                                    minPrice={minPrice}
+                                    maxPrice={maxPrice}
+                                    onChange={(minValue, maxValue) => {
+                                        setMinPrice(minValue);
+                                        setMaxPrice(maxValue);
+                                    }}
+                                />
                             </div>
                         </div>
                         <div>
                             <h1 className="text-3xl text-black">ยี่ห้อ</h1>
                             <div className="flex flex-col gap-2 py-2">
                                 <div>
-                                    <input
-                                        type="checkbox"
-                                        id="brandA"
-                                        name="brandA"
+                                    <FormControlLabel
+                                        label="Brand A"
                                         value="Brand A"
-                                        onChange={(e) => {
-                                            if (e.target.checked) {
-                                                setSelectedBrands([...selectedBrands, e.target.value]);
-                                            } else {
-                                                setSelectedBrands(selectedBrands.filter((brand) => brand !== e.target.value));
-                                            }
-                                        }}
-                                        checked={selectedBrands.includes('Brand A')}
+                                        control={<Checkbox
+                                            color="success"
+                                            id="brandA"
+                                            name="brandA"
+                                            onChange={(e) => {
+                                                if (e.target.checked) {
+                                                    setSelectedBrands([...selectedBrands, e.target.value]);
+                                                } else {
+                                                    setSelectedBrands(selectedBrands.filter((brand) => brand !== e.target.value));
+                                                }
+                                            }}
+                                            checked={selectedBrands.includes('Brand A')}
+                                            defaultChecked
+                                            sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
+                                        />}
+                                        sx={{ typography: 'h6', color: 'black' }}
                                     />
-                                    <label htmlFor="brandA" className="pl-2 text-black text-xl">Brand A</label>
                                 </div>
                                 <div>
-                                    <input
-                                        type="checkbox"
-                                        id="brandB"
-                                        name="brandB"
+                                    <FormControlLabel
+                                        label="Brand B"
                                         value="Brand B"
-                                        onChange={(e) => {
-                                            if (e.target.checked) {
-                                                setSelectedBrands([...selectedBrands, e.target.value]);
-                                            } else {
-                                                setSelectedBrands(selectedBrands.filter((brand) => brand !== e.target.value));
-                                            }
-                                        }}
-                                        checked={selectedBrands.includes('Brand B')}
+                                        control={<Checkbox
+                                            color="success"
+                                            id="brandB"
+                                            name="brandB"
+                                            onChange={(e) => {
+                                                if (e.target.checked) {
+                                                    setSelectedBrands([...selectedBrands, e.target.value]);
+                                                } else {
+                                                    setSelectedBrands(selectedBrands.filter((brand) => brand !== e.target.value));
+                                                }
+                                            }}
+                                            checked={selectedBrands.includes('Brand B')}
+                                            defaultChecked
+                                            sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
+                                        />}
+                                        sx={{ typography: 'h6', color: 'black' }}
                                     />
-                                    <label htmlFor="brandB" className="pl-2 text-black text-xl">Brand B</label>
                                 </div>
                                 <div>
-                                    <input
-                                        type="checkbox"
-                                        id="brandC"
-                                        name="brandC"
+                                    <FormControlLabel
+                                        label="Brand C"
                                         value="Brand C"
-                                        onChange={(e) => {
-                                            if (e.target.checked) {
-                                                setSelectedBrands([...selectedBrands, e.target.value]);
-                                            } else {
-                                                setSelectedBrands(selectedBrands.filter((brand) => brand !== e.target.value));
-                                            }
-                                        }}
-                                        checked={selectedBrands.includes('Brand C')}
+                                        control={<Checkbox
+                                            color="success"
+                                            id="brandC"
+                                            name="brandC"
+                                            onChange={(e) => {
+                                                if (e.target.checked) {
+                                                    setSelectedBrands([...selectedBrands, e.target.value]);
+                                                } else {
+                                                    setSelectedBrands(selectedBrands.filter((brand) => brand !== e.target.value));
+                                                }
+                                            }}
+                                            checked={selectedBrands.includes('Brand C')}
+                                            defaultChecked
+                                            sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
+                                        />}
+                                        sx={{ typography: 'h6', color: 'black' }}
                                     />
-                                    <label htmlFor="brandC" className="pl-2 text-black text-xl">Brand C</label>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +249,7 @@ export default function sport() {
                     <div className="container mx-auto px-4 py-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {filteredItems.map((item) => (
-                                <Link href={`/item/${item.id}`} key={item.id} className="block border rounded-lg overflow-hidden hover:shadow-md">
+                                <Link href={`/${currentPath}/${item.id}`} key={item.id} className="block border rounded-lg overflow-hidden hover:shadow-md">
                                     <img src={item.image} alt={item.text} className="w-full" />
                                     <div className="p-4">
                                         <h2 className="text-xl font-bold mb-2 text-black">{item.text}</h2>
